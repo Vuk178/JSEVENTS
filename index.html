@@ -17,7 +17,47 @@
 
         <div id="hint" class="flex items-center gap-3 rounded bg-amber-100 p-3 text-sm">
             <p class="flex-1">Savjet: tipka Esc u polju za pretragu briše upisani pojam</p>
-            <button id="hint-close" type="button" class="rounded px-2 py-1 hover:bg-amber-200"></button>
+            <button id="hint-close" type="button" class="rounded px-2 py-1 hover:bg-amber-200">
+                Zatvori
+            </button>
+        </div>
+
+            <form id="add-form" class="space-y-3 rounded bg-white p-4 shadow">
+                <h2 class="text-xl font-semibold">Novi film</h2>
+                <div>
+                    <label for="title" class="block text-sm font-medium">Naziv</label>
+                    <input for="title" name="title" type="text" class="w-full rounded border-slate-300 px-2 py-1">
+
+                    <p id="title-error" class="text-sm text-red-600"></p>
+                </div>
+                <div class="flex gap-3">
+                    <div class="flex-1">
+                        <label for="genre" class="block text-sm font-medium">Žanr</label>
+                        <select id="genre" name="genre" class="w-full rounded border-slate-300 px-2 py-1">
+                            <option value="">Odaberi Žanr</option>
+                            <option value="animirani">animirani</option>
+                            <option value="dokumentarni">dokumentarni</option>
+                            <option value="drama">drama</option>
+                            <option value="komedija">komedija</option>
+                        </select>
+                        <p id="genre" class="text-sm text-red-600"></p>
+                    </div>
+
+                    <div class="flex-1">
+                        <label for="minutes" class="block text-sm font-medium">Trajanje(min)</label>
+                        <input for="minutes" name="minutes" type="number" class="w-full rounded border-slate-300 px-2 py-1">
+                        <p id="minutes-error" class="text-sm text-red-600"></p>
+                    </div>
+                    
+                </div>
+                    <label class="flex items-center gap-2 text-sm">
+                        <input name="watched" type="checkbox">Već pogledano
+                    </label>
+                    <button type="submit" class="rounded bg-indigo-600 px-4 py-2 font-medium text-white hover:bg-indigo-700">
+                        Dodaj
+                    </button>
+                    <p id="message" aria.live="polite" class="text-sm text-green-700"></p>
+            </form>
         </div>
         <p id="counter" class="text-sm text-slate-600"></p>
 

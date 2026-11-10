@@ -32,10 +32,10 @@ function createItem(film) {
     toggle.textContent = film.watched ? "Vrati" : "Pregledano";
 
     const remove = document.createElement("button");
-    toggle.type = "button";
-    toggle.dataset.action = "delete";
-    toggle.className = "rounded bg-red-100 px-2 py-1 text-sm hover:bg-red-200";
-    toggle.textContent = "Obriši";
+    remove.type = "button";
+    remove.dataset.action = "delete";
+    remove.className = "rounded bg-red-100 px-2 py-1 text-sm hover:bg-red-200";
+    remove.textContent = "Obriši";
 
     li.append(text, toggle, remove);
     return li;
@@ -58,11 +58,52 @@ list.addEventListener("click", (event) => {
         const film = films.find((f) => f.id === id);
     film.watched = !film.watched;}
 else if (button.dataset.action === "delete") {
-    const film = films.find((f)=> f.id === id);
+    const film = films.find((f) => f.id === id);
     films.splice(films.findIndex((f) => f.id === id), 1);
 }
 
 render();
 });
 
+
+document.querySelector("#hint-close").addEventListener("click", () => {
+    document.querySelector("#hint").remove();
+}, {once : true});
+
+//dodavanje novog elementa
+const form = document.querySelector("#add-form");
+const titleInput = form.elements.title;
+const message = document.querySelector("#message");
+
+//validacijske funkcije
+function errorMessage(field){
+    const v = field.validity;
+    if (v.valueMissing) return `Ovo polje je obavezno`;
+    if(v.tooShort) return `Napiši barem ${field.minlength} znaka`;
+    if(v.badInput) return `Upiši broj`;
+    if(v.rangeUnderflow) return `Najmanje ${field.min} min`
+}
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+   
+    if(data.title.trim()=== "") return;
+
+        films.push({
+            id: crypto.randomUUID(),
+            title: data.title,
+            genre:  data.genre,
+            minutes: Number(data.minutes),
+            watched: form.elements.watched.checked
+        });
+
+        render();
+
+        message.textContent = `Dodano: ${data.title}`;
+        form.reset();
+        titleInput.focus();
+});
 render();
