@@ -73,6 +73,22 @@
                 <p id="message" aria-live="polite" class="text-sm text-green-700"></p>
             
         </form>
+        <div class="flex flex-wrap gap-3">
+            <input id="search" type="search" placeholder="pretraži po nazivu" aria-label="pretraga"
+            class="flex-1 rounded border border-slate-300 bg-white px-2 py-1">
+
+            <select id="genre-filter" aria-label="Žanr" class="rounded border border-slate-300 bg-white px-2 py-1">
+                <option value="all">Svi žanrovi</option>
+
+            </select>
+            <select id="sort" aria-label="Sortiranje" class="rounded border border-slate-300 bg-white px-2 py-1">
+                <option value="title">Naslov</option>
+                <option value="minutes-asc">Trajanje od kraćeg</option>
+                <option value="minutes-desc">Trajanje od dužeg</option>
+
+            </select>
+
+        </div>
 
         <p id="counter" class="text-sm text-slate-600"></p>
 

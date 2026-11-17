@@ -49,6 +49,12 @@ const list = document.querySelector("#list");
 const counter = document.querySelector("#counter");
 const empty = document.querySelector("#empty");
 
+const state = {
+    query: "",
+    genre: "all",
+
+}
+
 function createItem(film) {
     const li = document.createElement("li");
     li.dataset.id = film.id;
@@ -75,6 +81,15 @@ function createItem(film) {
 
     li.append(text, toggle, remove);
     return li;
+}
+
+function visibleFilms(){
+    const query = state.query.trim().toLowerCase();
+
+    const filtered = films.filter((film) => {
+        const matchesQuery = film.title.toLowerCase().includes(query);
+        const matchesGenre
+    })
 }
 
 function render() {
